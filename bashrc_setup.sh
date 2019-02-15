@@ -18,5 +18,7 @@ EOF
 cat ${HOME}/.tmp/tmp  >> ${HOME}/.bashrc
 rm -rf ${HOME}/tmp/.tmp
 
+source ${HOME}/.bashrc
+
 
 
