@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # bookmark list
-declare -A bk
+declare -a bk
 bk[home]="cd ~"
 
 # bookmark for home directory
