@@ -1,6 +1,6 @@
 
 
 all:
-	./setup.sh
+	./install.sh
 
 

@@ -2,8 +2,8 @@
 
 BASEDIR=`pwd .`
 
-echo "===== Link User bin ====="
+echo "===== Copy User bin ====="
 
-ln -s ${BASEDIR}/bin ${HOME}/bin
+cp -a ${BASEDIR}/bin ${HOME}/bin
 
 
