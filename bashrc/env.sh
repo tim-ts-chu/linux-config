@@ -9,7 +9,8 @@ export CLICOLOR=1;
 export LSCOLORS=exfxcxdxbxegedabagacad;
 
 # set alias
-alias ll='ls -al'
+alias ll='ls -al --color'
+alias ls='ls --color'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
