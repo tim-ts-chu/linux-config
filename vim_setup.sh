@@ -43,7 +43,6 @@ else
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 vim +PluginInstall +qall
-sudo apt-get install build-essential cmake python-dev python3-dev
 ~/.vim/bundle/YouCompleteMe/install.py
 
 

@@ -1,12 +1,12 @@
 #! /bin/bash
 
 # bookmark list
-declare -a bk
-bk[home]="cd ~"
+declare -A bk
+bk[home]="cd ${HOME}"
 
 # bookmark for home directory
-for dir in ~/*; do
-    if [ -d dir ]; then
+for dir in ${HOME}/*; do
+    if [ -d ${dir} ]; then
         base=`basename $dir`
         bk[$base]="cd $dir"
     fi
