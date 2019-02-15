@@ -1,0 +1,9 @@
+#! /bin/bash
+
+if [ -z $1 ]; then
+	echo "Please input keyword for grep"
+	exit -1
+fi
+
+grep -nr $@ --exclude=tags --exclude-dir=.git --color
+

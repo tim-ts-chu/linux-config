@@ -1,0 +1,6 @@
+
+
+all:
+	./setup.sh
+
+

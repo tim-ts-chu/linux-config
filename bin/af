@@ -1,0 +1,11 @@
+#! /bin/bash
+
+if [ -z $1 ]; then
+	echo "Please input keyword for find"
+	exit -1
+fi
+
+keyword=*$1*
+
+find ./ -iname "$keyword" | grep "$1" --color -i
+

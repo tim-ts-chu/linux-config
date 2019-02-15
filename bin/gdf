@@ -1,0 +1,121 @@
+#!/bin/bash
+# TODO:
+# - convert the diff file to correct file name
+# such that vim can recognize it.
+# - don't bind on git diff
+
+GDF_WRAPPER=${HOME}/bin/gdf_wrapper
+GITROOT=`git rev-parse --show-toplevel` || exit -1
+TEMP_DIR=`mktemp -dup . -t ".gdf_XXXX"` || exit -1
+VIM_CMD_FILE=`mktemp -up $TEMP_DIR -t "vim.XXXX"` || exit -1
+export GDF_TMPDIR="$TEMP_DIR" || exit -1
+
+clean_exit()
+{
+	rm -rf "$TEMP_DIR"
+	exit $1
+}
+
+setup_gdf_wrapper()
+{
+	cat > $GDF_WRAPPER <<'EOF'
+#!/bin/bash
+mkdir -p $GDF_TMPDIR 2>/dev/null;
+TMPDIR=${TMPDIR:-/tmp/}
+if [ "${1:0:${#TMPDIR}}" = "$TMPDIR" ]; then
+	cp $1 $GDF_TMPDIR/ 2>/dev/null;
+	echo -n "$GDF_TMPDIR/`basename $1` ";
+else
+	echo -n "$1 ";
+fi
+if [ "${2:0:${#TMPDIR}}" = "$TMPDIR" ]; then
+	cp $2 $GDF_TMPDIR/ 2>/dev/null;
+	echo $GDF_TMPDIR/`basename $2`;
+else
+	echo $2;
+fi
+exit 0;
+EOF
+	chmod 755 $GDF_WRAPPER
+}
+
+check_gdf_wrapper()
+{
+	local ans
+	if [ -x $GDF_WRAPPER ]; then
+		return
+	fi
+
+	echo "This tool requires a wrapper scripts - $GDF_WRAPPER !"
+	echo -n "Do you want to INSTALL [Y/n]? "
+	read ans
+	if [ "$ans" = N ] || [ "$ans" = n ]; then
+		echo "Stopped. lack of $GDF_WRAPPER !"
+		exit 1
+	else
+		setup_gdf_wrapper
+	fi
+}
+
+parse_filelist()
+{
+	echo "cd $GITROOT" >> $VIM_CMD_FILE
+	while [ $# -ge 2 ]; do
+        echo "au! BufEnter *" >> $VIM_CMD_FILE
+        echo "tabe $1" >> $VIM_CMD_FILE
+        echo "vert diffsplit $2" >> $VIM_CMD_FILE
+		shift 2
+	done
+}
+
+usage() {
+	echo "usage: $(basename $0) show [tag/SHA1]"
+	echo "	show a commit diff"
+	git diff -h 2>&1 | sed 's/git diff/gdf/g'
+	echo "	accept the same parameters of git diff too"
+}
+
+case "$1" in
+	"-h")
+		usage
+		exit 1
+		;;
+	"show")
+		if [ $# -eq 1 ]; then
+			arg="HEAD"
+		else
+			arg=$2
+		fi
+		set -- "$arg^" "$arg"
+		;;
+esac
+
+check_gdf_wrapper
+
+# Since diff.external would affect the behavior of 'git diff'
+# use difftool instead
+files=`git difftool --no-prompt --extcmd $GDF_WRAPPER $@ 2>&1`
+if [ $? -ne 0 ]; then
+	echo "$files"
+	exit -1
+fi
+
+if [ -z "$files" ]; then
+	echo "No difference found !"
+	clean_exit 1
+fi
+
+parse_filelist $files
+
+if [ -s $VIM_CMD_FILE ]; then
+	echo "tabfirst" >> $VIM_CMD_FILE
+	echo "tabclose" >> $VIM_CMD_FILE
+	vim -S $VIM_CMD_FILE
+else
+	echo "Empty vim command!!"
+    echo $files
+    clean_exit -1
+fi
+
+clean_exit 0
+
