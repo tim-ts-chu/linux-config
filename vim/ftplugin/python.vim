@@ -1,8 +1,3 @@
-setlocal fdm=indent
-nmap <F9> :PyflakesUpdate<CR>:copen<CR>
-setlocal makeprg=/usr/bin/env\ python\ %
-
-
 "===== PE8
 setlocal et sta sw=4 sts=4
 "==== or

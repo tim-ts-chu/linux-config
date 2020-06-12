@@ -70,6 +70,8 @@ vmap <tab> :><CR>gv
 " <shift-tab> decrease indent in insert mode
 vmap <s-tab> :<<CR>gv
 
+map <F9> :NERDTreeToggle<CR>
+
 map <F11> :10winc < <CR>
 " <F12> move the split of tab to right
 map <F12> :10winc > <CR>
@@ -103,7 +105,12 @@ match ExtraWhitespace /\s\+$/
 "
 " auto change working directory to the file folder
 "autocmd BufEnter * silent! lcd %:p:h
-" set tags=tags;
+"
+" ================= Tags & Scope =============================================
+set tags=tags;
+
+" ================= Plugin ===== =============================================
+" let NERDTreeMapOpenInTabSilent='<ENTER>'
 
 
 " ================= Vundle ===================================================
@@ -119,6 +126,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.

@@ -3,6 +3,7 @@
 if ! [ -d ${HOME}/.tmp ]; then
 	rm -rf ${HOME}/.tmp
 	mkdir ${HOME}/.tmp
+    #chmod +t ${HOME}/.tmp
 fi
 
 cat > ${HOME}/.tmp/tmp << "EOF"

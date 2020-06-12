@@ -2,8 +2,9 @@
 
 # set env variable
 export HOME=`ls -d ~`
-export TZ='Asia/Taipei'
-export TMPDIR=$HOME/.tmp
+export TZ='America/Detroit'
+#export TMPDIR=$HOME/.tmp
+export TMPDIR=/tmp
 export PATH=$PATH:~/bin
 export CLICOLOR=1;
 export LSCOLORS=exfxcxdxbxegedabagacad;
