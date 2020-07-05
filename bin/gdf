@@ -110,7 +110,7 @@ parse_filelist $files
 if [ -s $VIM_CMD_FILE ]; then
 	echo "tabfirst" >> $VIM_CMD_FILE
 	echo "tabclose" >> $VIM_CMD_FILE
-	vim -S $VIM_CMD_FILE
+	nvim -S $VIM_CMD_FILE
 else
 	echo "Empty vim command!!"
     echo $files
