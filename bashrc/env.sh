@@ -15,7 +15,9 @@ alias ls='ls --color'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias py='ipython'
+alias py='python3'
 alias grep='grep --color'
+alias vim='nvim'
+alias fzf='~/.fzf/bin/fzf'
 
 

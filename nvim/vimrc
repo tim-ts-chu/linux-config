@@ -1,0 +1,134 @@
+" ================= remember position of cursor ===============================
+if filereadable($VIMRUNTIME . "/vimrc_example.vim")
+    so $VIMRUNTIME/vimrc_example.vim
+endif
+
+if filereadable($VIMRUNTIME . "/macros/matchit.vim")
+    so $VIMRUNTIME/macros/matchit.vim
+endif
+
+" ================= Encodings =================================================
+set encoding=utf-8
+set fileencoding=utf-8  " big5/utf8/taiwan(before 6.0)
+set termencoding=utf-8  " utf8/big5
+if ($LANG == "zh_TW.big5")
+    set fileencoding=big5
+    set termencoding=big5
+endif
+
+" ================= syntax on =================================================
+syntax on   " syntax on/off/enable
+
+" ================= Vim Settings (:set show current settings) =================
+set ai                  " autoindent: always set autoindenting on
+set si                  " smartindent: autoindent when last line is indent
+set nu                  " number: show line number. 'set nu!' to switch
+set ts=4                " tabstop: width of tab
+set sw=4                " shiftwidth: width of shift a line when use >>
+set et                  " noexpandtab: do not use space instead of tab
+
+set bk                  " backup: keep a backup file in backup dir
+set bdir=~/.tmp         " backupdir: backup directory
+set dir=~/.tmp          " directory: to save swp files
+set undodir=~/.tmp      " undofile dir: to save vim undo command"
+
+set ru                  " ruler: show the cursor position all the time
+set smd                 " showmode: normal mode, insert mode, or visual mode
+set hls                 " hlsearch: hightlight search
+set is                  " incsearch: move to target when searct h
+set ws                  " wrapscan: return to top of file when search hit buttom
+set ffs=unix,dos,mac    " fileformat: EOL(unix=\n, dos=\r\n, max=\r)
+set sc                  " showcmd: display incomplete commands
+set ic                  " ignorecase: ignore case when search
+set scs                 " smartcase: override the ignorecase if contains upper case
+set ls=2                " laststatus: always display a status-bar.
+set noacd               " noautochdir: auto change work dir to the same as the open file
+
+set wmnu                " wildmenu: use option list when auto complete
+set bs=2                " backspace: allow backspacing over everything in insert mode
+set sm                  " showmatch: show matching parenthese.
+set tpm=200             "tabpagemax: max number of tab pages to be opened by the -p command
+
+set viminfo='20,\"50    " read/write a .viminfo file,
+set mouse=n             " Use mouse function in normal mode
+set modeline            " lines at the beginning and end are checked for modelines
+
+" ================= KeyBoard Mappings (:h key-notation) =======================
+"vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
+"nmap <C-p> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>gp
+" shift+tab: backup indent the line
+"map <tab> :><CR>
+"map <s-tab> :<<CR>
+
+" <tab> move to the next tab in normal mode
+map <tab> :tabnext <CR>
+" <shift-tab> move the previous of tab in normal
+map <s-tab> :tabprevious <CR>
+
+" <tab> increase indent in block mode
+vmap <tab> :><CR>gv
+" <shift-tab> decrease indent in block mode
+vmap <s-tab> :<<CR>gv
+
+nnoremap <silent> <F9> :RnvimrToggle<CR>
+tnoremap <silent> <F9> <C-\><C-n>:RnvimrToggle<CR>
+
+map <F10> :FZF<CR>
+
+map <F11> :10winc < <CR>
+" <F12> move the split of tab to right
+map <F12> :10winc > <CR>
+
+" ================= Fold Settings (:h fold , :h fold-foldtext) ================
+set foldmethod=syntax
+set diffopt=filler,foldcolumn:0
+let g:sh_fold_enabled = 7
+let g:vimsyn_folding = 'afpPrtm'
+
+" ================= Display Colors (:h hi, group-name cterm-colors) ===========
+"hi Comment     ctermfg=DarkGray
+hi Folded       ctermfg=DarkGray    ctermbg=Black
+hi FoldColumn   ctermbg=Black
+
+hi DiffAdd      ctermbg=Black
+hi DiffDelete   ctermfg=DarkGray    ctermbg=Black
+hi DiffChange   ctermbg=Black       term=reverse
+"hi DiffText        ctermbg=DarkBlue
+
+hi NonText      ctermfg=DarkGray
+hi SpecialKey   ctermfg=Black
+
+"set cursorline
+hi CursorLine   cterm=NONE  term=NONE
+
+"set menu
+hi Pmenu ctermbg=DarkGrey guibg=DarkGrey
+
+hi ExtraWhitespace ctermbg=Gray
+match ExtraWhitespace /\s\+$/
+
+" ================= Auto Commands ============================================
+"
+" auto change working directory to the file folder
+"autocmd BufEnter * silent! lcd %:p:h
+"
+" ================= Tags & Scope =============================================
+set tags=tags;
+
+function! LoadCscope()
+    let db = findfile("cscope.out", ".;")
+    if (!empty(db))
+        let path = strpart(db, 0, match(db, "/cscope.out$"))
+        set nocscopeverbose " suppress 'duplicate connection' error
+        exe "cs add " . db . " " . path
+        set cscopeverbose
+        " else add the database pointed to by environment variable
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+endfunction
+au BufEnter /* call LoadCscope()
+" ================= Plugin ===== =============================================
+" let NERDTreeMapOpenInTabSilent='<ENTER>'
+
+
