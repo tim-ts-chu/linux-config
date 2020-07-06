@@ -2,6 +2,9 @@
 
 BASEDIR=`pwd .`
 
+# build neovim
+git clone https://github.com/neovim/neovim.git
+
 # create .config folder if not exist
 mkdir -p $HOME/.config
 
@@ -22,7 +25,7 @@ ln -s ${BASEDIR}/nvim ${HOME}/.config/nvim
 # install vim-plugin
 echo "install vim-plug"
 curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#nvim +PluginInstall +qall
+nvim +PlugInstall +qall
 
 
 
