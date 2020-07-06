@@ -1,9 +1,6 @@
 #!/bin/bash
 
-BASEDIR=`pwd .`
-
-# build neovim
-git clone https://github.com/neovim/neovim.git
+BASEDIR=`realpath ~/linux-config`
 
 # create .config folder if not exist
 mkdir -p $HOME/.config
