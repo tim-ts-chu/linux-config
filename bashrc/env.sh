@@ -10,7 +10,7 @@ export CLICOLOR=1;
 export LSCOLORS=exfxcxdxbxegedabagacad;
 
 # set alias
-alias ll='ls -al --color'
+alias ll='ls -al --color --group-directories-first'
 alias ls='ls --color'
 alias rm='rm -i'
 alias cp='cp -i'

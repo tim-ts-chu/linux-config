@@ -1,5 +1,5 @@
 "===== PE8
-setlocal et sta sw=4 sts=4
+"setlocal et sta sw=4 sts=4
 "==== or
 "set expandtab
 "set smarttab

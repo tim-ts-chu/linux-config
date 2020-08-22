@@ -9,6 +9,9 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
+let g:AutoPairsShortcutFastWrap = '<C-e>'
+Plug 'preservim/nerdcommenter'
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -27,6 +30,8 @@ let g:airline#extensions#tabline#tab_min_count = 0     " minimum of 2 tabs neede
 let g:airline_theme='dark_minimal'
 let g:airline_highlighting_cache = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#branch#enabled = 1
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 " ctags
 " Plug 'ludovicchabant/vim-gutentags'
@@ -46,7 +51,7 @@ let g:rnvimr_layout = { 'relative': 'editor',
 Plug 'airblade/vim-rooter'
 "theme
 " Plug 'tomasiser/vim-code-dark'
-
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 

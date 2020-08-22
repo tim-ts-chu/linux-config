@@ -65,9 +65,12 @@ map <tab> :tabnext <CR>
 " <shift-tab> move the previous of tab in normal
 map <s-tab> :tabprevious <CR>
 
-" <tab> increase indent in insert mode
+imap <tab> <C-t>
+imap <s-tab> <C-d>
+
+" <tab> increase indent in block mode
 vmap <tab> :><CR>gv
-" <shift-tab> decrease indent in insert mode
+" <shift-tab> decrease indent in block mode
 vmap <s-tab> :<<CR>gv
 
 map <F9> :NERDTreeToggle<CR>
@@ -109,6 +112,19 @@ match ExtraWhitespace /\s\+$/
 " ================= Tags & Scope =============================================
 set tags=tags;
 
+function! LoadCscope()
+    let db = findfile("cscope.out", ".;")
+    if (!empty(db))
+        let path = strpart(db, 0, match(db, "/cscope.out$"))
+        set nocscopeverbose " suppress 'duplicate connection' error
+        exe "cs add " . db . " " . path
+        set cscopeverbose
+        " else add the database pointed to by environment variable
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+endfunction
+au BufEnter /* call LoadCscope()
 " ================= Plugin ===== =============================================
 " let NERDTreeMapOpenInTabSilent='<ENTER>'
 

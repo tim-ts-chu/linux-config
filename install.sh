@@ -1,4 +1,5 @@
 
+
 # install dependancy
 cd ${HOME}/linux-config
 if [ $? -ne 0 ]; then

@@ -12,6 +12,14 @@ for dir in ${HOME}/*; do
     fi
 done
 
+bk[regression]="cd ${HOME}/predict-behavior/src/python/predict_behavior/products/trajectory_regression"
+for dir in ${HOME}/predict-behavior/src/python/predict_behavior/products/trajectory_regression/*; do
+    if [ -d ${dir} ]; then
+        base=`basename $dir`
+        bk[$base]="cd $dir"
+    fi
+done
+
 # *** print hint bookmark message for debug ***
 cmd=''
 for key in ${!bk[@]}; do
