@@ -7,7 +7,7 @@ source $HOME/.config/nvim/vimrc
 call plug#begin('~/.config/nvim/plugged')
 " coding
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 let g:AutoPairsShortcutFastWrap = '<C-e>'
@@ -38,7 +38,7 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 " Ranger
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'kevinhwang91/rnvimr'
 let g:rnvimr_enable_picker = 1
 let g:ranger_replace_netrw = 1
 let g:rnvimr_layout = { 'relative': 'editor',
