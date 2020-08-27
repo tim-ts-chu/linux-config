@@ -9,9 +9,9 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ -z `which sudo` ]; then
-    SUDO=sudo
-else
     SUDO=''
+else
+    SUDO=sudo
 fi
 
 echo "===== apt install ====="
