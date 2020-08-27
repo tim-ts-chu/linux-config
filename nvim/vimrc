@@ -28,9 +28,9 @@ set sw=4                " shiftwidth: width of shift a line when use >>
 set et                  " noexpandtab: do not use space instead of tab
 
 set bk                  " backup: keep a backup file in backup dir
-set bdir=~/.tmp         " backupdir: backup directory
-set dir=~/.tmp          " directory: to save swp files
-set undodir=~/.tmp      " undofile dir: to save vim undo command"
+"set bdir=~/.tmp         " backupdir: backup directory
+"set dir=~/.tmp          " directory: to save swp files
+"set undodir=~/.tmp      " undofile dir: to save vim undo command
 
 set ru                  " ruler: show the cursor position all the time
 set smd                 " showmode: normal mode, insert mode, or visual mode
