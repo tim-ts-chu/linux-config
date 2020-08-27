@@ -2,20 +2,21 @@
 
 BASEDIR=`realpath ~/linux-config`
 
-apt install -y wget tmux build-essential curl git
+#apt install -y wget tmux build-essential curl git
 
-echo "neovim build..."
-apt install -y ninja-build libtool-bin gperf luajit luarocks libuv1-dev libluajit-5.1-dev libunibilium-dev libmsgpack-dev libtermkey-dev libvterm-dev libutf8proc-dev gettext libtool autoconf automake cmake g++ pkg-config unzip
+echo "===== neovim build... ====="
+#apt install -y ninja-build libtool-bin gperf luajit luarocks libuv1-dev libluajit-5.1-dev libunibilium-dev libmsgpack-dev libtermkey-dev libvterm-dev libutf8proc-dev gettext libtool autoconf automake cmake g++ pkg-config unzip
 cd ~; git clone -b v0.4.4 https://github.com/neovim/neovim.git
 cd ~/neovim; make CMAKE_BUILD_TYPE=Release
 cd ~/neovim; make install
+cd ~
 rm -rf ~/neovim
 
-echo "nodejs install..."
+echo "===== nodejs install... ====="
 curl -sL https://deb.nodesource.com/setup_14.x > ~/install.sh
 bash ~/install.sh -y
 rm -rf ~/install.sh
-apt install -y nodejs cmdtest
+#apt install -y nodejs cmdtest
 
 #echo "yarn install..."
 #curl -sL https://yarnpkg.com/install.sh  > ~/install.sh
@@ -23,14 +24,14 @@ apt install -y nodejs cmdtest
 #rm -rf ~/install.sh
 #source ~/.bashrc
 
-echo "coc dependencies install..."
-apt install -y python3-pip
+echo "===== coc dependencies install... ====="
+#apt install -y python3-pip
 pip3 install pynvim jedi
 curl -sL install-node.now.sh/lts > ~/install.sh
 bash ~/install.sh -y
 rm -rf ~/install.sh
 
-apt install -y ranger
+#apt install -y ranger
 pip3 install ranger-fm
 
 # create .config folder if not exist
@@ -49,11 +50,11 @@ fi
 echo "link ${HOME}/.config/nvim from ${BASEDIR}/nvim"
 ln -s ${BASEDIR}/nvim ${HOME}/.config/nvim
 
-echo "install vim-plug"
+echo "===== install vim-plug ====="
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qall
 
 echo "coc package"
-nvim -c 'CocInstall coc-snippets coc-json coc-tsserver'
+nvim -c 'CocInstall coc-snippets coc-json coc-tsserver' +qall
 
 
