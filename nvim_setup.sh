@@ -17,11 +17,11 @@ bash ~/install.sh -y
 rm -rf ~/install.sh
 apt install -y nodejs cmdtest
 
-echo "yarn install..."
-curl -sL https://yarnpkg.com/install.sh  > ~/install.sh
-bash ~/install.sh
-rm -rf ~/install.sh
-source ~/.bashrc
+#echo "yarn install..."
+#curl -sL https://yarnpkg.com/install.sh  > ~/install.sh
+#bash ~/install.sh
+#rm -rf ~/install.sh
+#source ~/.bashrc
 
 echo "coc dependencies install..."
 apt install -y python3-pip
