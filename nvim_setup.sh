@@ -2,37 +2,35 @@
 
 BASEDIR=`realpath ~/linux-config`
 
-#apt install -y wget tmux build-essential curl git
 
-echo "===== neovim build... ====="
-#apt install -y ninja-build libtool-bin gperf luajit luarocks libuv1-dev libluajit-5.1-dev libunibilium-dev libmsgpack-dev libtermkey-dev libvterm-dev libutf8proc-dev gettext libtool autoconf automake cmake g++ pkg-config unzip
-cd ~; git clone -b v0.4.4 https://github.com/neovim/neovim.git
-cd ~/neovim; make CMAKE_BUILD_TYPE=Release
-cd ~/neovim; make install
-cd ~
-rm -rf ~/neovim
+echo "===== neovim install... ====="
+cd ~; wget https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
+chmod u+x ~/nvim.appimage
+cd ~; ~/nvim.appimage --appimage-extract
+mv ~/squashfs-root ~/.squashfs-root
+ln -s ~/.squashfs-root/usr/bin/nvim /usr/bin/nvim
+rm -rf ~/nvim.appimage
 
 echo "===== nodejs install... ====="
 curl -sL https://deb.nodesource.com/setup_14.x > ~/install.sh
 bash ~/install.sh -y
 rm -rf ~/install.sh
-#apt install -y nodejs cmdtest
 
 #echo "yarn install..."
-#curl -sL https://yarnpkg.com/install.sh  > ~/install.sh
-#bash ~/install.sh
-#rm -rf ~/install.sh
-#source ~/.bashrc
+curl -sL https://yarnpkg.com/install.sh  > ~/install.sh
+bash ~/install.sh
+rm -rf ~/install.sh
+source ~/.bashrc
 
 echo "===== coc dependencies install... ====="
 #apt install -y python3-pip
-pip3 install pynvim jedi
+pip3 install pynvim jedi ranger-fm
 curl -sL install-node.now.sh/lts > ~/install.sh
 bash ~/install.sh -y
 rm -rf ~/install.sh
 
 #apt install -y ranger
-pip3 install ranger-fm
+#pip3 install ranger-fm
 
 # create .config folder if not exist
 mkdir -p $HOME/.config
@@ -53,8 +51,4 @@ ln -s ${BASEDIR}/nvim ${HOME}/.config/nvim
 echo "===== install vim-plug ====="
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qall
-
-echo "coc package"
-nvim -c 'CocInstall coc-snippets coc-json coc-tsserver' +qall
-
 
