@@ -7,7 +7,10 @@ source $HOME/.config/nvim/vimrc
 call plug#begin('~/.config/nvim/plugged')
 " coding
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 let g:AutoPairsShortcutFastWrap = '<C-e>'
