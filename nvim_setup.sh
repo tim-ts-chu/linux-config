@@ -19,6 +19,10 @@ source ~/.bashrc
 
 echo "===== coc dependencies install... ====="
 pip3 install pynvim jedi ranger-fm
+curl -sL https://deb.nodesource.com/setup_14.x > ~/install.sh
+bash ~/install.sh -y
+rm -rf ~/install.sh
+
 curl -sL install-node.now.sh/lts > ~/install.sh
 bash ~/install.sh -y
 rm -rf ~/install.sh
