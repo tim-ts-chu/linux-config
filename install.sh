@@ -36,7 +36,7 @@ rm -rf ~/install.sh
 
 pip3 install pynvim jedi ranger-fm
 curl -sL install-node.now.sh/lts > ~/install.sh
-bash ~/install.sh -y
+$SUDO bash ~/install.sh -y
 rm -rf ~/install.sh
 
 # ignore conda first
