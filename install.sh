@@ -45,7 +45,6 @@ rm -rf ~/install.sh
 # ignore conda first
 
 # linux-config
-cd ~; git clone -b master https://github.com/tim-ts-chu/linux-config.git
 mkdir -p ~/.config
 ln -s ~/linux-config/nvim ${HOME}/.config/nvim
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
