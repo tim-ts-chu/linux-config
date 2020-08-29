@@ -22,9 +22,6 @@ $SUDO apt install -y wget tmux build-essential curl git
 # coc
 $SUDO apt install -y nodejs cmdtest python3-pip ranger
 
-#RUN apt update
-#RUN apt install -y wget git curl
-#RUN apt install -y nodejs cmdtest python3-pip ranger
 cd ~; wget https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
 chmod u+x ~/nvim.appimage
 cd ~; ~/nvim.appimage --appimage-extract
@@ -51,9 +48,9 @@ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubuserc
 nvim +PlugInstall +qall
 
 # run all setup shell script
-#for f in ~/linux-config/*setup.sh; do
-#	echo $f;
-#	$f;
-#done
+for f in ~/linux-config/*setup.sh; do
+	echo $f;
+	$f;
+done
 
 
