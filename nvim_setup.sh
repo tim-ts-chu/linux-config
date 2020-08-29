@@ -11,11 +11,6 @@ mv ~/squashfs-root ~/.squashfs-root
 ln -s ~/.squashfs-root/usr/bin/nvim /usr/bin/nvim
 rm -rf ~/nvim.appimage
 
-echo "===== nodejs install... ====="
-curl -sL https://deb.nodesource.com/setup_14.x > ~/install.sh
-bash ~/install.sh -y
-rm -rf ~/install.sh
-
 #echo "yarn install..."
 curl -sL https://yarnpkg.com/install.sh  > ~/install.sh
 bash ~/install.sh
@@ -23,14 +18,10 @@ rm -rf ~/install.sh
 source ~/.bashrc
 
 echo "===== coc dependencies install... ====="
-#apt install -y python3-pip
 pip3 install pynvim jedi ranger-fm
 curl -sL install-node.now.sh/lts > ~/install.sh
 bash ~/install.sh -y
 rm -rf ~/install.sh
-
-#apt install -y ranger
-#pip3 install ranger-fm
 
 # create .config folder if not exist
 mkdir -p $HOME/.config

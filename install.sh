@@ -17,6 +17,7 @@ fi
 echo "===== apt install ====="
 
 # essential
+$SUDO apt update
 $SUDO apt install -y wget tmux build-essential curl git
 
 # coc
