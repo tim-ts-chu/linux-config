@@ -35,6 +35,7 @@ rm -rf ~/nvim.appimage
 curl -sL https://yarnpkg.com/install.sh  > ~/install.sh
 bash ~/install.sh
 rm -rf ~/install.sh
+. ~/.bashrc
 
 pip3 install pynvim jedi ranger-fm
 curl -sL install-node.now.sh/lts > ~/install.sh
