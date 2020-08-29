@@ -8,20 +8,20 @@ cd ~; wget https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appima
 chmod u+x ~/nvim.appimage
 cd ~; ~/nvim.appimage --appimage-extract
 mv ~/squashfs-root ~/.squashfs-root
-ln -s ~/.squashfs-root/usr/bin/nvim /usr/bin/nvim
+$SUDO ln -s ~/.squashfs-root/usr/bin/nvim /usr/bin/nvim
 rm -rf ~/nvim.appimage
 
 #echo "yarn install..."
 curl -sL https://yarnpkg.com/install.sh  > ~/install.sh
 bash ~/install.sh
 rm -rf ~/install.sh
-source ~/.bashrc
+. ~/.bashrc
 
 echo "===== coc dependencies install... ====="
 pip3 install pynvim jedi ranger-fm
-curl -sL https://deb.nodesource.com/setup_14.x > ~/install.sh
-bash ~/install.sh -y
-rm -rf ~/install.sh
+#curl -sL https://deb.nodesource.com/setup_14.x > ~/install.sh
+#bash ~/install.sh -y
+#rm -rf ~/install.sh
 
 curl -sL install-node.now.sh/lts > ~/install.sh
 bash ~/install.sh -y
