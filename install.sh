@@ -13,13 +13,13 @@ else
     SUDO=sudo
 fi
 
-echo "===== apt install ====="
+echo "===== apt install essential library ====="
 
 # essential
 $SUDO apt update
-$SUDO apt install -y wget tmux build-essential curl git
+$SUDO apt install -y wget tmux curl git
 
-# coc
+echo "===== coc dependencies ====="
 $SUDO apt install -y nodejs cmdtest python3-pip ranger
 
 cd ~; wget https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
@@ -39,18 +39,29 @@ curl -sL install-node.now.sh/lts > ~/install.sh
 $SUDO bash ~/install.sh -y
 rm -rf ~/install.sh
 
-# ignore conda first
-
-# linux-config
+echo "===== vim plugin install ====="
 mkdir -p ~/.config
 ln -s ~/linux-config/nvim ${HOME}/.config/nvim
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qall
+
+echo "===== fzf ====="
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
+
+echo "===== ag ====="
+$SUDO apt install -y silversearcher-ag
+
+echo "===== conda ====="
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+bash ~/miniconda.sh -b
+. ~/miniconda3/bin/activate
+conda init
+rm -rf ~/miniconda.sh
 
 # run all setup shell script
 for f in ~/linux-config/*setup.sh; do
 	echo $f;
 	$f;
 done
-
 
