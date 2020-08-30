@@ -19,6 +19,13 @@ echo "===== apt install essential library ====="
 $SUDO apt update
 $SUDO apt install -y wget tmux curl git
 
+echo "===== conda ====="
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+bash ~/miniconda.sh -b
+. ~/miniconda3/bin/activate
+conda init
+rm -rf ~/miniconda.sh
+
 echo "===== coc dependencies ====="
 $SUDO apt install -y nodejs cmdtest python3-pip ranger
 
@@ -52,12 +59,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 echo "===== ag ====="
 $SUDO apt install -y silversearcher-ag
 
-echo "===== conda ====="
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
-bash ~/miniconda.sh -b
-. ~/miniconda3/bin/activate
-conda init
-rm -rf ~/miniconda.sh
 
 # run all setup shell script
 for f in ~/linux-config/*setup.sh; do
