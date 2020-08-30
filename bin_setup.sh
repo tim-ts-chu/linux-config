@@ -1,6 +1,6 @@
 #! /bin/bash
 
-BASEDIR=`pwd .`
+BASEDIR=${HOME}/linux-config
 
 echo "===== Link User bin ====="
 
