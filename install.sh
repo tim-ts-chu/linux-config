@@ -41,7 +41,8 @@ bash ~/install.sh
 rm -rf ~/install.sh
 . ~/.bashrc
 
-pip3 install pynvim jedi ranger-fm
+conda install -y -c conda-forge pynvim
+pip3 install jedi ranger-fm
 curl -sL install-node.now.sh/lts > ~/install.sh
 $SUDO bash ~/install.sh -y
 rm -rf ~/install.sh
