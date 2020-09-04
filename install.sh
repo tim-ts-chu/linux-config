@@ -27,13 +27,16 @@ conda init
 rm -rf ~/miniconda.sh
 
 echo "===== coc dependencies ====="
-$SUDO apt install -y nodejs cmdtest python3-pip ranger
+$SUDO apt install -y cmdtest ranger
+
+echo "===== install binaries ====="
+mkdir -p ~/bin
 
 cd ~; wget https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
 chmod u+x ~/nvim.appimage
 cd ~; ~/nvim.appimage --appimage-extract
-mv ~/squashfs-root ~/.squashfs-root
-$SUDO ln -s ~/.squashfs-root/usr/bin/nvim /usr/bin/nvim
+mv ~/squashfs-root ~/bin/.squashfs-root
+ln -s ~/bin/.squashfs/usr/bin/nvim ~/bin/nvim
 rm -rf ~/nvim.appimage
 
 curl -sL https://yarnpkg.com/install.sh  > ~/install.sh
@@ -41,17 +44,20 @@ bash ~/install.sh
 rm -rf ~/install.sh
 . ~/.bashrc
 
-conda install -y -c conda-forge pynvim
-pip3 install jedi ranger-fm
-curl -sL install-node.now.sh/lts > ~/install.sh
-$SUDO bash ~/install.sh -y
-rm -rf ~/install.sh
+conda install -y nodejs pip
+pip install pynvim jedi ranger-fm
 
 echo "===== vim plugin install ====="
 mkdir -p ~/.config
 ln -s ~/linux-config/nvim ${HOME}/.config/nvim
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qall
+
+#echo "===== ranger ====="
+#wget https://ranger.github.io/ranger-1.9.3.tar.gz
+#tar xzv ranger-1.9.3.tar.gz
+#mv ~/ranger-1.9.3 ~/bin/.ranger
+#ln -s ~/bin/.ranger/ranger.py ~/bin/ranger
 
 echo "===== fzf ====="
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

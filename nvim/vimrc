@@ -27,7 +27,7 @@ set ts=4                " tabstop: width of tab
 set sw=4                " shiftwidth: width of shift a line when use >>
 set et                  " noexpandtab: do not use space instead of tab
 
-set bk                  " backup: keep a backup file in backup dir
+"set bk                  " backup: keep a backup file in backup dir
 "set bdir=~/.tmp         " backupdir: backup directory
 "set dir=~/.tmp          " directory: to save swp files
 "set undodir=~/.tmp      " undofile dir: to save vim undo command

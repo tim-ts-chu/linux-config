@@ -8,6 +8,7 @@ export TMPDIR=/tmp
 export PATH=$PATH:~/bin
 export CLICOLOR=1;
 export LSCOLORS=exfxcxdxbxegedabagacad;
+export LANG=en_US
 
 # set alias
 alias ll='ls -al --color --group-directories-first'
