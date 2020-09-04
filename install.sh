@@ -37,9 +37,9 @@ chmod u+x ~/nvim.appimage
 cd ~; ~/nvim.appimage --appimage-extract
 mv ~/squashfs-root ~/bin/.squashfs-root
 ln -s ~/bin/.squashfs-root/usr/bin/nvim ~/bin/nvim
+ln -s ~/bin/.squashfs-root/usr/bin/nvim ~/bin/vim
 rm -rf ~/nvim.appimage
 
-#conda install -y nodejs pip
 conda install -y nodejs pip
 pip install pynvim jedi ranger-fm
 
@@ -52,13 +52,7 @@ echo "===== vim plugin install ====="
 mkdir -p ~/.config
 ln -s ~/linux-config/nvim ${HOME}/.config/nvim
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim +PlugInstall +qall
-
-#echo "===== ranger ====="
-#wget https://ranger.github.io/ranger-1.9.3.tar.gz
-#tar xzv ranger-1.9.3.tar.gz
-#mv ~/ranger-1.9.3 ~/bin/.ranger
-#ln -s ~/bin/.ranger/ranger.py ~/bin/ranger
+~/bin/nvim +PlugInstall +qall
 
 echo "===== fzf ====="
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
