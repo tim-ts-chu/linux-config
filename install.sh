@@ -20,11 +20,15 @@ $SUDO apt update
 $SUDO apt install -y wget tmux curl git
 
 echo "===== conda ====="
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
-bash ~/miniconda.sh -b
-. ~/miniconda3/bin/activate
-conda init
-rm -rf ~/miniconda.sh
+if [ -z `which sudo` ]; then
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+    bash ~/miniconda.sh -b
+    . ~/miniconda3/bin/activate
+    conda init
+    rm -rf ~/miniconda.sh
+else
+    echo "conda is already exist, so skip conda install."
+fi
 
 echo "===== coc dependencies ====="
 $SUDO apt install -y cmdtest

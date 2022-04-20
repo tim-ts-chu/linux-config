@@ -9,6 +9,8 @@ export PATH=$PATH:~/bin
 export CLICOLOR=1;
 export LSCOLORS=exfxcxdxbxegedabagacad;
 export LANG=en_US
+export LANGUAGE=en_US
+export LC_ALL=C
 
 # set alias
 alias ll='ls -al --color --group-directories-first'

@@ -15,6 +15,12 @@ Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 let g:AutoPairsShortcutFastWrap = '<C-e>'
 Plug 'preservim/nerdcommenter'
+
+" lint
+Plug 'dense-analysis/ale'
+let b:ale_linters = {'python': ['flake8']}
+let b:ale_fixers = {'python': ['black']}
+
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
