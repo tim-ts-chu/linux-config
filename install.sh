@@ -20,7 +20,7 @@ $SUDO apt update
 $SUDO apt install -y wget tmux curl git
 
 echo "===== conda ====="
-if [ -z `which sudo` ]; then
+if [ -z `which conda` ]; then
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
     bash ~/miniconda.sh -b
     . ~/miniconda3/bin/activate
@@ -36,7 +36,7 @@ $SUDO apt install -y cmdtest
 echo "===== install binaries ====="
 mkdir -p ~/bin
 
-cd ~; wget https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
+cd ~; wget https://github.com/neovim/neovim/releases/download/v0.9.1/nvim.appimage
 chmod u+x ~/nvim.appimage
 cd ~; ~/nvim.appimage --appimage-extract
 mv ~/squashfs-root ~/bin/.squashfs-root
